@@ -6,6 +6,16 @@ using System.Threading.Tasks;
 
 namespace PlaypalEdit
 {
+
+    class ColormapEntry
+    {
+        public byte[] values = new byte[3];
+
+        public override string ToString()
+        {
+            return values[0].ToString() + ", " + values[1].ToString() + ", " + values[2].ToString();
+        }
+    }
     public class Colormap
     {
         static byte BestColor(int r, int g, int b, Palette palsrc, int rangel, int rangeh)
@@ -22,6 +32,9 @@ namespace PlaypalEdit
             int palStart = 0;
             for (i = rangel; i <= rangeh; i++)
             {
+                if (i == 0xfc)
+                    continue; // Megadrive 'thru' color
+
                 PalEntry pal = palsrc.Entries[rangel + palStart];
                 dr = r - (int)pal.R;
                 dg = g - (int)pal.G;
@@ -89,7 +102,7 @@ namespace PlaypalEdit
 
                     color15 = (short)((ri << 10) + (gi << 5) + bi);
                     */
-                    lightpalette[l, c] = BestColor(red, green, blue, palsrc, 0, 255);
+                    lightpalette[l, c] = BestColor(red, green, blue, palsrc, 1, 255);
 
 //                    color12s[l][c] = color12;
 //                    color15s[l][c] = color15;
