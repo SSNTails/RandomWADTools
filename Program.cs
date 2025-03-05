@@ -188,9 +188,9 @@ outputPals.Add(new Palette(entries));
 
 Palette.WriteJagPlaypal(outputPals.ToArray(), @"D:\32xrb2\SRB2_PLAYPALS.lmp");
 
-byte[,] colormapLights = Colormap.BuildLights(srb2pal, 32);
+byte[,] colormapLights = Colormap.BuildLights(srb2pal, 16);
 
-byte[,] colormapLights16 = Colormap.BuildLights(srb2pal, 64);
+byte[,] colormapLights16 = Colormap.BuildLights(srb2pal, 32);
 
 using (BinaryWriter bw = new BinaryWriter(new FileStream(@"D:\32xrb2\SRB2_COLORMAP.lmp", FileMode.Create)))
 {
@@ -209,7 +209,7 @@ using (BinaryWriter bw = new BinaryWriter(new FileStream(@"D:\32xrb2\SRB2_COLORM
 
 using (BinaryWriter bw = new BinaryWriter(new FileStream(@"D:\32xrb2\SRB2_COLORMAP_16.lmp", FileMode.Create)))
 {
-    for (int i = 0; i < 63; i += 2)
+    for (int i = 0; i < 31; i += 2)
     {
         for (int j = 128; j < 256; j++)
         {
@@ -223,7 +223,7 @@ using (BinaryWriter bw = new BinaryWriter(new FileStream(@"D:\32xrb2\SRB2_COLORM
         }
     }
 
-    byte black = 0;
+    byte black = 31;
     for (int i = 0; i < 256; i++)
     {
         bw.Write(black);
@@ -298,7 +298,7 @@ using (BinaryWriter bw = new BinaryWriter(new FileStream(@"D:\32xrb2\SRB2_COLORM
         bw.Write(black);
     }
 }
-
+/*
 using (BinaryWriter bw = new BinaryWriter(new FileStream(@"D:\32xrb2\SRB2_TRANSTABLE_16.lmp", FileMode.Create)))
 {
     for (int i = 0; i < 63; i += 2)
@@ -314,4 +314,4 @@ using (BinaryWriter bw = new BinaryWriter(new FileStream(@"D:\32xrb2\SRB2_TRANST
             bw.Write(colormapLights16[i, j]);
         }
     }
-}
+}*/

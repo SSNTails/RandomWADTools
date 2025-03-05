@@ -32,8 +32,10 @@ namespace PlaypalEdit
             int palStart = 0;
             for (i = rangel; i <= rangeh; i++)
             {
-                if (i == 0xfc)
+                if (rangel + palStart == 0xfc)
                     continue; // Megadrive 'thru' color
+                if (rangel + palStart == 0)
+                    continue; // Transparent color
 
                 PalEntry pal = palsrc.Entries[rangel + palStart];
                 dr = r - (int)pal.R;
